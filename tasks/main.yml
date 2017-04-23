@@ -1,18 +1,17 @@
 ---
 - name: Create packer directory
-  file: path=/opt/packer state=directory
+  file:
+    path: /opt/packer
+    state: directory
 
-- name: get packer binaries
-  get_url: url=https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
-           dest=/opt/packer/packer_{{ packer_version }}_linux_amd64.zip
+- name: Download and unzip packer 
+  unarchive:
+    src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
+    dest: /opt/packer/
+    remote_src: True
 
-- name: unzip packer
-  unarchive: src=/opt/packer/packer_{{ packer_version }}_linux_amd64.zip
-             dest=/opt/packer
-             copy=no
-
-- name: link packer to /usr/local/bin
+- name: Link packer to /usr/local/bin
   file: 
-    src: '/opt/packer/packer'
-    dest: '/usr/local/bin/packer'
+    src: /opt/packer/packer
+    dest: /usr/local/bin/packer
     state: link
