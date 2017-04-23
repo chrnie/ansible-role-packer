@@ -2,7 +2,6 @@
 galaxy_info:
   author: Christoph Niemann
   description: An Ansible role for managing HashiCorp packer
-  company: -
   license: Apache
   min_ansible_version: 2.0
   platforms:
@@ -24,8 +23,10 @@ galaxy_info:
     - name: Archlinux
       versions:
       - all
-  categories:
-  - cloud
-  - system
+  
+  galaxy_tags:
+    - system
+    - cloud
+
 dependencies:
   - { role: "chrnie.unzip" }
