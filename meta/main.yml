@@ -28,5 +28,4 @@ galaxy_info:
     - system
     - cloud
 
-dependencies:
-  - { role: "chrnie.unzip" }
+dependencies: []
