@@ -9,6 +9,7 @@
     src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
     dest: /opt/packer/
     remote_src: True
+    creates: /opt/packer/packer
 
 - name: Link packer to /usr/local/bin
   file: 
