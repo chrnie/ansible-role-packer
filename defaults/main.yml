@@ -1,2 +1,31 @@
 ---
 packer_version: "1.0.0"
+
+
+# anaconda variables
+
+packer_OS_templates: True
+
+packer_centos7_syslang: "lang de_DE.UTF-8"
+#packer_centos7_syslang: "lang en_US.UTF-8"
+
+packer_centos7_keyboard: "--vckeymap=de-nodeadkeys --xlayouts='de (nodeadkeys)'"
+#packer_centos7_keyboard: "us"
+
+packer_centos7_timezone: "Europe/Berlin --isUtc"
+#packer_centos7_timezone: "UTC"
+
+# network settings
+packer_centos7_network_hostname: "centos7Base.klimmbimm.local"
+packer_centos7_network_gateway:  "192.168.122.1"
+packer_centos7_network_ip:       "192.168.122.9"
+packer_centos7_network_dns:      "8.8.8.8"
+packer_centos7_network_netmask:  "255.255.255.0"
+
+# download sources
+packer_centos7_iso_url: "http://ftp.rrzn.uni-hannover.de/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso"
+packer_centos7_iso_checksum: "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a"
+
+# user & ssh
+packer_ansible_user: "ansibleRoot"
+packer_authorized_key: "ssh-rsa AAAAB3N... Copy your ~/.ssh/id_rsa.pub here"

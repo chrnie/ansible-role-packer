@@ -16,3 +16,9 @@
     src: /opt/packer/packer
     dest: /usr/local/bin/packer
     state: link
+
+- name: copy OS templates
+  include: OS_templates.yml
+  when: packer_OS_templates
+  tags: packer-centos7
+
