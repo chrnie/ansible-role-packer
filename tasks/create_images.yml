@@ -1,0 +1,8 @@
+---
+# This does not work
+# - name: create centos7 image
+#   shell: packer build centos7-base.json
+#   args:
+#     chdir: "{{ packer_basedir }}/distros/centos7"
+#     executable: /bin/bash
+#     creates: "{{ packer_basedir }}/distros/centos7/packer_images/centos7-base.qcow2"

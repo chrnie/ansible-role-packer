@@ -1,24 +1,33 @@
 ---
 - name: Create packer directory
   file:
-    path: /opt/packer
+    path: "{{ packer_basedir }}"
     state: directory
 
 - name: Download and unzip packer 
   unarchive:
     src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
-    dest: /opt/packer/
+    dest: "{{ packer_basedir }}/"
     remote_src: True
-    creates: /opt/packer/packer
+    creates: "{{ packer_basedir }}/packer"
 
 - name: Link packer to /usr/local/bin
   file: 
-    src: /opt/packer/packer
+    src: "{{ packer_basedir }}/packer"
     dest: /usr/local/bin/packer
     state: link
 
-- name: copy OS templates
+- name: include OS templates
   include: OS_templates.yml
   when: packer_OS_templates
-  tags: packer-centos7
+  tags: packer-templates
 
+- name: include xauth
+  include: xauth.yml
+  when: packer_xauth
+  tags: packer-xauth
+
+- name: create OS images
+  include: create_images.yml
+  when: packer_create_images
+  tags: packer-images

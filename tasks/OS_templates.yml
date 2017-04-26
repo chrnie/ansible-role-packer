@@ -4,21 +4,22 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - /opt/packer/distros
-    - /opt/packer/distros/centos7
-    - /opt/packer/distros/centos7/docroot
+    - "{{ packer_basedir }}/buildDir"
+    - "{{ packer_basedir }}/distros/centos7/docroot"
 
 - name: generate centOS7 ks file
   template:
     src: distros/centos7/centos7-base.json.j2
-    dest: /opt/packer/distros/centos7/centos7-base.json
+    dest: "{{ packer_basedir }}/distros/centos7/centos7-base.json"
 
 - name: generate centOS7 ks file
   template:
     src: distros/centos7/docroot/c7-kvm-ks.cfg.j2
-    dest: /opt/packer/distros/centos7/docroot/c7-kvm-ks.cfg
+    dest: "{{ packer_basedir }}/distros/centos7/docroot/c7-kvm-ks.cfg"
 
 - name: generate provisioner
   template:
     src: distros/centos7/provision.sh.j2
-    dest: /opt/packer/distros/centos7/provision.sh
+    dest: "{{ packer_basedir }}/distros/centos7/provision.sh"
+    owner: root
+    mode: 0755

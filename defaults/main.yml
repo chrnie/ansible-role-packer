@@ -1,6 +1,19 @@
 ---
+# base
 packer_version: "1.0.0"
+packer_basedir: /opt/packer
 
+# user & ssh:
+# the ssh key is used for passwordless login for
+# the following user, who can sudo passwordless
+packer_ansible_user: "ansibleRoot"
+packer_authorized_key: "ssh-rsa AAAAB3N... Copy your ~/.ssh/id_rsa.pub here or set in group_vars/all or somewhere else"
+
+
+# Xauth:
+# if you run this on a remote server (local is untested so far)
+# install xauth and tunnel x through ssh
+packer_xauth: True
 
 # anaconda variables
 
@@ -26,6 +39,7 @@ packer_centos7_network_netmask:  "255.255.255.0"
 packer_centos7_iso_url: "http://ftp.rrzn.uni-hannover.de/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso"
 packer_centos7_iso_checksum: "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a"
 
-# user & ssh
-packer_ansible_user: "ansibleRoot"
-packer_authorized_key: "ssh-rsa AAAAB3N... Copy your ~/.ssh/id_rsa.pub here"
+## create the image
+packer_create_images: True
+packer_create_image_list:
+  - "centos7/centos7-base.json"

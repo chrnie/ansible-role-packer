@@ -47,22 +47,15 @@
   "provisioners":
   [
     {
-      "type": "shell-local",
-      "command": "tar zcf provisioner.tar.gz provisioner/"
-    },
-    {
       "type": "file",
-      "source": "provisioner.tar.gz",
-      "destination": "/root/provisioner.tar.gz"
+      "source": "{{ packer_basedir }}/distros/centos7/provision.sh",
+      "destination": "/root/provision.sh"
     },
     {
       "type": "shell",
       "pause_before": "5s",
       "inline": [
         "cd /root/",
-        "mkdir /root/provisioner",
-        "tar zxf provisioner.tar.gz -C provisioner",
-        "cd provisioner/",
         "./provision.sh",
         "yum clean all"
       ]
