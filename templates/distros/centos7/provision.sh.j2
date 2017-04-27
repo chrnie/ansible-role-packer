@@ -21,26 +21,19 @@ sed -i 's/^# %wheel/%wheel/g' /etc/sudoers
 
 # copy default network config for nat on eth0
 
-cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth0
+cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth1
 TYPE=Ethernet
 BOOTPROTO=none
 DEFROUTE=yes
 IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=eth0
-DEVICE=eth0
+IPV6INIT=no
+NAME=eth1
+DEVICE=eth1
 ONBOOT=yes
 IPADDR={{ packer_centos7_network_ip }}
 PREFIX=24
 GATEWAY={{ packer_centos7_network_gateway }}
 DNS1={{ packer_centos7_network_dns }}
-IPV6_PEERDNS=yes
-IPV6_PEERROUTES=yes
-IPV6_PRIVACY=no
 
 EOF
 
