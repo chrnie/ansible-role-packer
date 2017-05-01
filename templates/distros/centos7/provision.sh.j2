@@ -16,19 +16,28 @@ echo
 
 
 # sudo without password
-sed -i 's/^%wheel/## wheel/g' /etc/sudoers
-sed -i 's/^# %wheel/%wheel/g' /etc/sudoers
+if grep -P "^%wheel\s*ALL=\(ALL\)\s*NOPASSWD:\s*ALL" /etc/sudoers > /dev/null; then
+  echo "wheel is already in NOPASSWD mode"
+else
+  sed -i 's/^%wheel/## wheel/g' /etc/sudoers
+  sed -i 's/^# %wheel/%wheel/g' /etc/sudoers
+fi
 
-# copy default network config for nat on eth0
-
-cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth1
+## copy default network config for nat
+# in this setup public ip is always eth0, so if eth1 exist it will be the nat if
+if ip link | grep eth1 > /dev/null; then 
+  ETH=eth1
+else
+  ETH=eth0
+fi
+cat << EOF > /etc/sysconfig/network-scripts/ifcfg-${ETH}
 TYPE=Ethernet
 BOOTPROTO=none
 DEFROUTE=yes
 IPV4_FAILURE_FATAL=no
 IPV6INIT=no
-NAME=eth1
-DEVICE=eth1
+NAME=${ETH}
+DEVICE=${ETH}
 ONBOOT=yes
 IPADDR={{ packer_centos7_network_ip }}
 PREFIX=24
