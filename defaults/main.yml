@@ -36,8 +36,8 @@ packer_centos7_network_dns:      "8.8.8.8"
 packer_centos7_network_netmask:  "255.255.255.0"
 
 # download sources
-packer_centos7_iso_url: "http://ftp.rrzn.uni-hannover.de/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso"
-packer_centos7_iso_checksum: "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a"
+packer_centos7_iso_url: "http://ftp.rrzn.uni-hannover.de/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso"
+packer_centos7_iso_checksum: "bba314624956961a2ea31dd460cd860a77911c1e0a56e4820a12b9c5dad363f5"
 
 ## create the image
 packer_create_images: True
