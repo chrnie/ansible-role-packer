@@ -2,10 +2,23 @@
 
 An Ansible role for managing HashiCorp [Packer](https://packer.io/)
 
+## How To?
+
+When configured connect to your machine and create the base Images. 
+We use xAuth to tunnel the VNC screen automagically to you workstation.
+
+```sh
+$ ssh -X root@srvXY
+root@srvXY /opt/packer/distros/centos7 # packer build centos7-base.json 
+[...]
+==> Builds finished. The artifacts of successful builds are:
+--> qemu: VM files in directory: centos7-base-img
+```
 
 ## Requirements
 
-64bit Linux
+- 64bit Linux
+- virt-manager on your workstation
 
 
 ## Role Variables

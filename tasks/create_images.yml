@@ -1,4 +1,8 @@
 ---
+- name: Todo: create Image
+  debug:
+    msg: "automatic image creation is not supported for now, refer to README.md for details."
+
 # This does not work
 # - name: create centos7 image
 #   shell: packer build centos7-base.json

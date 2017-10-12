@@ -18,16 +18,16 @@
     state: link
 
 - name: include OS templates
-  include: OS_templates.yml
+  import_tasks: OS_templates.yml
   when: packer_OS_templates
   tags: packer-templates
 
 - name: include xauth
-  include: xauth.yml
+  import_tasks: xauth.yml
   when: packer_xauth
   tags: packer-xauth
 
 - name: create OS images
-  include: create_images.yml
+  import_tasks: create_images.yml
   when: packer_create_images
   tags: packer-images
