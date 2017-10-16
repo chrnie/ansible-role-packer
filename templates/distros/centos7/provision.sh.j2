@@ -23,28 +23,28 @@ else
   sed -i 's/^# %wheel/%wheel/g' /etc/sudoers
 fi
 
-## copy default network config for nat
-# in this setup public ip is always eth0, so if eth1 exist it will be the nat if
-if ip link | grep eth1 > /dev/null; then 
-  ETH=eth1
-else
-  ETH=eth0
-fi
-cat << EOF > /etc/sysconfig/network-scripts/ifcfg-${ETH}
-TYPE=Ethernet
-BOOTPROTO=none
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=no
-NAME=${ETH}
-DEVICE=${ETH}
-ONBOOT=yes
-IPADDR={{ packer_centos7_network_ip }}
-PREFIX=24
-GATEWAY={{ packer_centos7_network_gateway }}
-DNS1={{ packer_centos7_network_dns }}
-
-EOF
+### copy default network config for nat
+## in this setup public ip is always eth0, so if eth1 exist it will be the nat if
+#if ip link | grep eth1 > /dev/null; then 
+#  ETH=eth1
+#else
+#  ETH=eth0
+#fi
+#cat << EOF > /etc/sysconfig/network-scripts/ifcfg-${ETH}
+#TYPE=Ethernet
+#BOOTPROTO=none
+#DEFROUTE=yes
+#IPV4_FAILURE_FATAL=no
+#IPV6INIT=no
+#NAME=${ETH}
+#DEVICE=${ETH}
+#ONBOOT=yes
+#IPADDR={{ packer_centos7_network_ip }}
+#PREFIX=24
+#GATEWAY={{ packer_centos7_network_gateway }}
+#DNS1={{ packer_centos7_network_dns }}
+#
+#EOF
 
 # add a first user
 if ! grep {{ packer_ansible_user }} /etc/passwd > /dev/null; then

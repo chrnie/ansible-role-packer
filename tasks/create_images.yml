@@ -1,5 +1,5 @@
 ---
-- name: Todo: create Image
+- name: "Todo: create Image"
   debug:
     msg: "automatic image creation is not supported for now, refer to README.md for details."
 
